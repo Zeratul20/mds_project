@@ -13,6 +13,8 @@ import IconButton from "@mui/material/IconButton";
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
 import FirstPageIcon from "@mui/icons-material/FirstPage";
 import LastPageIcon from "@mui/icons-material/LastPage";
+import { movies } from "../mock_data/movies";
+import { TableHead } from "@mui/material";
 
 interface TablePaginationActionsProps {
   count: number;
@@ -98,21 +100,23 @@ function createData(title: string, views: number, rating: number) {
   return { title, views, rating };
 }
 
-const rows = [
-  createData("Cupcake", 305, 3.7),
-  createData("Donut", 452, 25.0),
-  createData("Eclair", 262, 16.0),
-  createData("Frozen yoghurt", 159, 6.0),
-  createData("Gingerbread", 356, 16.0),
-  createData("Honeycomb", 408, 3.2),
-  createData("Ice cream sandwich", 237, 9.0),
-  createData("Jelly Bean", 375, 0.0),
-  createData("KitKat", 518, 26.0),
-  createData("Lollipop", 392, 0.2),
-  createData("Marshmallow", 318, 0),
-  createData("Nougat", 360, 19.0),
-  createData("Oreo", 437, 18.0),
-].sort((a, b) => (a.rating < b.rating ? -1 : 1));
+const sortedMovies = movies.sort((a, b) => (a.rating < b.rating ? 1 : -1));
+
+// const rows = [
+//   createData("Cupcake", 305, 3.7),
+//   createData("Donut", 452, 25.0),
+//   createData("Eclair", 262, 16.0),
+//   createData("Frozen yoghurt", 159, 6.0),
+//   createData("Gingerbread", 356, 16.0),
+//   createData("Honeycomb", 408, 3.2),
+//   createData("Ice cream sandwich", 237, 9.0),
+//   createData("Jelly Bean", 375, 0.0),
+//   createData("KitKat", 518, 26.0),
+//   createData("Lollipop", 392, 0.2),
+//   createData("Marshmallow", 318, 0),
+//   createData("Nougat", 360, 19.0),
+//   createData("Oreo", 437, 18.0),
+// ].sort((a, b) => (a.rating < b.rating ? -1 : 1));
 
 export const MoviesTable = () => {
   const [page, setPage] = React.useState(0);
@@ -120,7 +124,7 @@ export const MoviesTable = () => {
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - sortedMovies.length) : 0;
 
   const handleChangePage = (
     event: React.MouseEvent<HTMLButtonElement> | null,
@@ -139,20 +143,27 @@ export const MoviesTable = () => {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
+      <TableHead>
+            <TableRow>
+              <TableCell>Movie</TableCell>
+              <TableCell align="right">Rating&nbsp;</TableCell>
+              <TableCell align="right">Views&nbsp;</TableCell>
+            </TableRow>
+          </TableHead>
         <TableBody>
           {(rowsPerPage > 0
-            ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : rows
-          ).map((row) => (
-            <TableRow key={row.title}>
+            ? sortedMovies.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            : sortedMovies
+          ).map((movie) => (
+            <TableRow key={movie.title}>
               <TableCell component="th" scope="row">
-                {row.title}
+                {movie.title}
               </TableCell>
               <TableCell style={{ width: 160 }} align="right">
-                {row.rating}
+                {movie.rating}
               </TableCell>
               <TableCell style={{ width: 160 }} align="right">
-                {row.views}
+                {movie.views}
               </TableCell>
             </TableRow>
           ))}
@@ -167,12 +178,12 @@ export const MoviesTable = () => {
             <TablePagination
               rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
               colSpan={3}
-              count={rows.length}
+              count={sortedMovies.length}
               rowsPerPage={rowsPerPage}
               page={page}
               SelectProps={{
                 inputProps: {
-                  "aria-label": "rows per page",
+                  "aria-label": "movies per page",
                 },
                 native: true,
               }}
