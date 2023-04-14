@@ -143,16 +143,19 @@ export const MoviesTable = () => {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
-      <TableHead>
-            <TableRow>
-              <TableCell>Movie</TableCell>
-              <TableCell align="right">Rating&nbsp;</TableCell>
-              <TableCell align="right">Views&nbsp;</TableCell>
-            </TableRow>
-          </TableHead>
+        <TableHead>
+          <TableRow>
+            <TableCell>Movie</TableCell>
+            <TableCell align="right">Rating&nbsp;</TableCell>
+            <TableCell align="right">Views&nbsp;</TableCell>
+          </TableRow>
+        </TableHead>
         <TableBody>
           {(rowsPerPage > 0
-            ? sortedMovies.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            ? sortedMovies.slice(
+                page * rowsPerPage,
+                page * rowsPerPage + rowsPerPage
+              )
             : sortedMovies
           ).map((movie) => (
             <TableRow key={movie.title}>

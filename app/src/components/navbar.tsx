@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 
-export const Navbar = () => {
-  const [selectedMenu, setSelectedMenu] = useState("Home");
+export const Navbar = ({ isLoaded }: any) => {
   const navigate = useNavigate();
+
+  const [selectedMenu, setSelectedMenu] = React.useState("home");
 
   const handleChange = (event: React.SyntheticEvent, value: string) => {
     navigate(value);
@@ -24,6 +25,7 @@ export const Navbar = () => {
       >
         <Tab value="home" label="Home" />
         <Tab value="movies" label="Movies" />
+        {!isLoaded && <Tab value="signup" label="Sign Up" />}
       </Tabs>
     </Box>
   );
