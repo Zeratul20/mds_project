@@ -5,7 +5,7 @@ GET {{api}}/movies
 Content-Type: application/json
 
 ### GET Movie
-GET {{api}}/movies/1
+GET {{api}}/movies/2
 Content-Type: application/json
 
 ### POST
@@ -13,22 +13,18 @@ POST {{api}}/movies
 Content-Type: application/json
 
 {
-    "name": "movie1",
-    "views": 4000,
-    "director": "vlad",
-    "year": 2010,
+    "name": "movie3",
+    "views": 5000,
+    "director": "mircea",
+    "year": 2000,
     "description": "a good movie"
 }
 
 ### PUT
-PUT {{api}}/movies/1
+PUT {{api}}/movies/2
 Content-Type: application/json
 
 {
-    "name": "movie1",
-    "views": 5000,
-    "director": "vlad",
-    "year": 2010,
     "description": "a very good movie updated"
 }
 
