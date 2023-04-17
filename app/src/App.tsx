@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Home } from "./views/home";
 import { SignUp } from "./components/signUp";
 import { MoviesTable } from "./views/table";
+import { Logout } from "./components/logout";
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -44,6 +45,7 @@ function App() {
             />
             <Route path="/movies" element={<MoviesTable />} />
             {!isLoaded && <Route path="/signup" element={<SignUp />} />}
+            {isLoaded && <Route path="/logout" element={<Logout isLoaded={isLoaded} setIsLoaded={setIsLoaded}/>} />}
           </Routes>
         </Router>
       </div>

@@ -26,6 +26,7 @@ export const Navbar = ({ isLoaded }: any) => {
         <Tab value="home" label="Home" />
         <Tab value="movies" label="Movies" />
         {!isLoaded && <Tab value="signup" label="Sign Up" />}
+        {isLoaded && <Tab value="logout" label="Logout" />}
       </Tabs>
     </Box>
   );

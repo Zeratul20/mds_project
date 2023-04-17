@@ -10,17 +10,15 @@ export const Home = ({ isLoaded, setIsLoaded, userId, setUserId }: any) => {
   };
   return (
     <div>
+      <section id="login">
       {!isLoaded ? (
         <Login setIsLoaded={setIsLoaded} setUserId={setUserId} />
       ) : (
         <div style={{ overflowY: "auto" }}>
-          <button onClick={handleClick} className="button logout__submit">
-            <span className="button__text">Log Out</span>
-            <i className="button__icon fas fa-chevron-right"></i>
-          </button>
           <div className="sample-container"></div>
         </div>
       )}
+      </section>
       <footer>
         <h3>Contact:</h3>
         <ul>
