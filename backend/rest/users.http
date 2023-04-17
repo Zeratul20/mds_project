@@ -1,7 +1,7 @@
 @api = http://localhost:8080/api
 
-### GET
-GET {{api}}/users/login/vlad
+### POST
+POST {{api}}/users/login/vlad
 Content-Type: application/json
 
 {
