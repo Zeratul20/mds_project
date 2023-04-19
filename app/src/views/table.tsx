@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Table from "@mui/material/Table";
@@ -13,8 +13,8 @@ import IconButton from "@mui/material/IconButton";
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
 import FirstPageIcon from "@mui/icons-material/FirstPage";
 import LastPageIcon from "@mui/icons-material/LastPage";
-import { movies } from "../mock_data/movies";
 import { TableHead } from "@mui/material";
+import axios from "axios";
 
 interface TablePaginationActionsProps {
   count: number;
@@ -96,31 +96,26 @@ const TablePaginationActions = (props: TablePaginationActionsProps) => {
   );
 };
 
-function createData(title: string, views: number, rating: number) {
-  return { title, views, rating };
-}
-
-const sortedMovies = movies.sort((a, b) => (a.rating < b.rating ? 1 : -1));
-
-// const rows = [
-//   createData("Cupcake", 305, 3.7),
-//   createData("Donut", 452, 25.0),
-//   createData("Eclair", 262, 16.0),
-//   createData("Frozen yoghurt", 159, 6.0),
-//   createData("Gingerbread", 356, 16.0),
-//   createData("Honeycomb", 408, 3.2),
-//   createData("Ice cream sandwich", 237, 9.0),
-//   createData("Jelly Bean", 375, 0.0),
-//   createData("KitKat", 518, 26.0),
-//   createData("Lollipop", 392, 0.2),
-//   createData("Marshmallow", 318, 0),
-//   createData("Nougat", 360, 19.0),
-//   createData("Oreo", 437, 18.0),
-// ].sort((a, b) => (a.rating < b.rating ? -1 : 1));
-
 export const MoviesTable = () => {
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [movies, setMovies] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/api/movies")
+      .then((res) => {
+        console.log("res: ", res);
+        setMovies(res.data);
+        // movies = res.data;
+      })
+      .catch((err) => console.log(err));
+  }, [movies.length]);
+
+  console.log(">>> movies: ", movies);
+
+  const sortedMovies = movies.sort((a: any, b: any) =>
+    a.views < b.views ? 1 : -1
+  );
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -146,7 +141,7 @@ export const MoviesTable = () => {
         <TableHead>
           <TableRow>
             <TableCell>Movie</TableCell>
-            <TableCell align="right">Rating&nbsp;</TableCell>
+            <TableCell align="right">Year&nbsp;</TableCell>
             <TableCell align="right">Views&nbsp;</TableCell>
           </TableRow>
         </TableHead>
@@ -157,13 +152,13 @@ export const MoviesTable = () => {
                 page * rowsPerPage + rowsPerPage
               )
             : sortedMovies
-          ).map((movie) => (
+          ).map((movie: any) => (
             <TableRow key={movie.title}>
               <TableCell component="th" scope="row">
-                {movie.title}
+                {movie.name}
               </TableCell>
               <TableCell style={{ width: 160 }} align="right">
-                {movie.rating}
+                {movie.year}
               </TableCell>
               <TableCell style={{ width: 160 }} align="right">
                 {movie.views}

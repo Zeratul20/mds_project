@@ -1,7 +1,7 @@
 require('dotenv').config({ path: require('find-config')('.env') })
-const { config } = require("./services/mysql");
+const { config } = require("./services/pg");
 const knexConfig = {
-  client: "mysql",
+  client: "postgresql",
   connection: config.connection,
   pool: {
     min: 2,
