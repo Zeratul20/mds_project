@@ -21,7 +21,7 @@ export const Movie = () => {
       .then((res) => {
         //console.log("res: ", res);
         if(res.data.length === 0)
-          return;
+          return <div>No movie found</div>;
         setMovie(res.data[0]);
       })
       .catch((err) => console.log(err));
