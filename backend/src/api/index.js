@@ -23,5 +23,6 @@ app.use(function (req, res, next) {
 
 app.use("/api", require("./users"));
 app.use("/api", require("./movies"));
+app.use("/api", require("./comments"));
 
 module.exports = app;

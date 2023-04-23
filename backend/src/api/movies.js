@@ -1,8 +1,6 @@
 const router = require("express").Router({ mergeParams: true });
 const { knex } = require("../services/pg");
 
-//get post put delete
-
 router.get("/movies", async (req, res, next) => {
   try {
     const movies = await knex("movies");

@@ -33,4 +33,13 @@ router.post("/users/signUp", async (req, res, next) => {
   }
 });
 
+router.get("/users", async (req, res, next) => {
+  try {
+    const users = await knex("users");
+    res.send(users);
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;

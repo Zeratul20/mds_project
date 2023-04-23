@@ -11,7 +11,7 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [userId, setUserId] = useState(0);
 
-  const [movieId, setMovieId] = useState(0);
+  const [movieId, setMovieId] = useState(1);
 
   console.log(">>>App.tsx: ", isLoaded);
   return (
@@ -46,7 +46,8 @@ function App() {
             {!isLoaded && <Route path="/signup" element={<SignUp />} />}
             {isLoaded && <Route path="/logout" element={<Logout isLoaded={isLoaded} setIsLoaded={setIsLoaded}/>} />}
             <Route path="/movies/:movieId"
-              element={<Movie movieId={movieId}/>}
+              // element={<Movie movieId={movieId}/>}
+              element={<Movie/>}
             />
           </Routes>
         </Router>
