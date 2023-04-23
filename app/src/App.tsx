@@ -42,10 +42,10 @@ function App() {
                 />
               }
             />
-            <Route path="/movies" element={<MoviesTable setMovieId={setMovieId}/>} />
+            <Route path="/movies" element={<MoviesTable setMovieId={setMovieId} userId={userId}/>} />
             {!isLoaded && <Route path="/signup" element={<SignUp />} />}
             {isLoaded && <Route path="/logout" element={<Logout isLoaded={isLoaded} setIsLoaded={setIsLoaded}/>} />}
-            <Route path="/movies/:movieId"
+            <Route path="/movies/:movieId/:userId"
               // element={<Movie movieId={movieId}/>}
               element={<Movie/>}
             />

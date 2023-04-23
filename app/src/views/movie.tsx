@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { Comments } from "./comments";
 
 export const Movie = () => {
   const [movie, setMovie] = useState({
@@ -11,7 +12,7 @@ export const Movie = () => {
     year: 0,
   });
 
-  const { movieId } = useParams();
+  const { movieId, userId } = useParams();
 
   useEffect(() => {
     console.log("movieId: ", movieId)
@@ -33,6 +34,7 @@ export const Movie = () => {
       <h2>De: {movie.director}</h2>
       <h4>Vizualizari: {movie.views}</h4>
       {movie.description}
+      <Comments movieId={movieId} userId={userId}/>
     </div>
   );
 };

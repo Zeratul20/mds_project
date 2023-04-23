@@ -16,7 +16,7 @@ import LastPageIcon from "@mui/icons-material/LastPage";
 import { TableHead } from "@mui/material";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 
 
@@ -100,9 +100,10 @@ const TablePaginationActions = (props: TablePaginationActionsProps) => {
   );
 };
 
-export const MoviesTable = ({setMovieId}:any) => {
+export const MoviesTable = ({setMovieId, userId}:any) => {
   const [movies, setMovies] = useState([]);
   const navigate = useNavigate();
+  // const {userId} = useParams();
   useEffect(() => {
     axios
       .get("http://localhost:8080/api/movies")
@@ -161,7 +162,7 @@ export const MoviesTable = ({setMovieId}:any) => {
             <TableRow key={movie.title}>
               <TableCell component="th" scope="row">
               <button onClick={() => {
-                  navigate(`/movies/${movie.id}`);
+                  navigate(`/movies/${movie.id}/${userId}`);
                   setMovieId(movie.id);
                 }}>
                 {movie.name}
