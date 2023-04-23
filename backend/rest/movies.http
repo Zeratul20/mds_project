@@ -13,11 +13,11 @@ POST {{api}}/movies
 Content-Type: application/json
 
 {
-    "name": "movie2",
-    "views": 2000,
-    "director": "vlad",
-    "year": 2010,
-    "description": "a very good movie"
+    "name": "movie3",
+    "views": 5000,
+    "director": "Mircea",
+    "year": 2000,
+    "description": "a good movie"
 }
 
 ### PUT

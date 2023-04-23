@@ -5,14 +5,13 @@ import { Home } from "./views/home";
 import { SignUp } from "./components/signUp";
 import { MoviesTable } from "./views/table";
 import { Logout } from "./components/logout";
+import { Movie } from "./views/movie";
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [userId, setUserId] = useState(0);
 
-  const [gameObj, setGameObj] = React.useState({ id: 0, fen: "" });
-
-  const [fen, setFen] = React.useState("");
+  const [movieId, setMovieId] = useState(0);
 
   console.log(">>>App.tsx: ", isLoaded);
   return (
@@ -43,9 +42,12 @@ function App() {
                 />
               }
             />
-            <Route path="/movies" element={<MoviesTable />} />
+            <Route path="/movies" element={<MoviesTable setMovieId={setMovieId}/>} />
             {!isLoaded && <Route path="/signup" element={<SignUp />} />}
             {isLoaded && <Route path="/logout" element={<Logout isLoaded={isLoaded} setIsLoaded={setIsLoaded}/>} />}
+            <Route path="/movies/:movieId"
+              element={<Movie movieId={movieId}/>}
+            />
           </Routes>
         </Router>
       </div>
