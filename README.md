@@ -22,5 +22,9 @@ Backlog: https://hackteam.atlassian.net/jira/software/projects/MDS/issues
 
 UML diagram: https://cloud.smartdraw.com/editor.aspx?templateId=b993f724-b109-4f07-bb2a-c4727f0b00ea&flags=128#depoId=44259253&credID=-47208087
 
+![image](https://user-images.githubusercontent.com/53442538/234018590-6b77ae07-de42-437f-bbf4-07e0ec873d68.png)
+
+
+
 TODO:
 link catre Demo (video)
