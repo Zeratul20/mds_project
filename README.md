@@ -18,8 +18,9 @@ User Stories:
 - As an user, I would like to be notified when my account has been approved (should have)
 - As an user, I would like for the site to have a table of the movies where I can click on one and see a more detailed page of the movie and the comments below + a place where I can post a comment, too (must have)
 
-Backlog: https://unibucro0-my.sharepoint.com/:w:/r/personal/vlad-andrei_andries_s_unibuc_ro/Documents/Document8.docx?d=w505469258bf04ce0a075430594653173&csf=1&web=1&e=OH9Ge5
+Backlog: https://hackteam.atlassian.net/jira/software/projects/MDS/issues
 
-TODO: 
-UML diagram
+UML diagram: https://cloud.smartdraw.com/editor.aspx?templateId=b993f724-b109-4f07-bb2a-c4727f0b00ea&flags=128#depoId=44259253&credID=-47208087
+
+TODO:
 link catre Demo (video)
