@@ -6,6 +6,7 @@ import { SignUp } from "./components/signUp";
 import { MoviesTable } from "./views/table";
 import { Logout } from "./components/logout";
 import { Movie } from "./views/movie";
+import { Users } from "./views/users";
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -45,10 +46,8 @@ function App() {
             <Route path="/movies" element={<MoviesTable setMovieId={setMovieId} userId={userId}/>} />
             {!isLoaded && <Route path="/signup" element={<SignUp />} />}
             {isLoaded && <Route path="/logout" element={<Logout isLoaded={isLoaded} setIsLoaded={setIsLoaded}/>} />}
-            <Route path="/movies/:movieId/:userId"
-              // element={<Movie movieId={movieId}/>}
-              element={<Movie/>}
-            />
+            <Route path="/movies/:movieId/:userId" element={<Movie/>}/>
+            <Route path="/users" element={<Users/>} />
           </Routes>
         </Router>
       </div>
