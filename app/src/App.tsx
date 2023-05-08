@@ -10,7 +10,7 @@ import { Users } from "./views/users";
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [userId, setUserId] = useState(0);
+  const [userId, setUserId] = useState(3);
 
   const [movieId, setMovieId] = useState(1);
 

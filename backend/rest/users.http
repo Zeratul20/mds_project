@@ -13,9 +13,10 @@ POST {{api}}/users/signUp
 Content-Type: application/json
 
 {
-    "username": "mircea",
-    "password": "1234",
-    "email": "mircea@gmail.com"
+    "id": 0,
+    "username": "anonim",
+    "password": "1",
+    "email": "anonim@gmail.com"
 }
 
 ### GET
