@@ -47,6 +47,7 @@ router.delete("/movies/:movieId", async (req, res, next) => {
       res.send("Can't find movie");
       return;
     }
+    await knex("comments").where({ movieId: id }).delete();
     await knex("movies").where({ id }).delete();
     res.json({ message: "Movie deleted" });
   } catch (error) {

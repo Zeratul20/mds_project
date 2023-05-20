@@ -22,7 +22,7 @@ export const Comments = ({ movieId, userId }: any) => {
   };
   const [comments, setComments] = useState([]);
   useEffect(() => {
-    console.log("comments: ", comments)
+    console.log("comments: ", comments);
     axios
       .get(`http://localhost:8080/api/movies/${movieId}/comments`)
       .then((res) => {
@@ -38,7 +38,8 @@ export const Comments = ({ movieId, userId }: any) => {
       {comments.map((comment: any) => (
         <div>
           <p>
-            {comment.message} | {comment.userId}
+            {/* {comment.message} | {getUsername(comment.userId)} */}
+            {comment.message} | {comment.username}
           </p>
         </div>
       ))}

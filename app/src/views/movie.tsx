@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Comments } from "./comments";
 
 export const Movie = () => {
@@ -11,6 +11,8 @@ export const Movie = () => {
     director: "",
     year: 0,
   });
+
+  const navigate = useNavigate();
 
   const { movieId, userId } = useParams();
 
@@ -28,6 +30,7 @@ export const Movie = () => {
   }, [movieId]);
   return (
     <div>
+      <button onClick={() => navigate("/movies")}>Return to the Movies page</button>
       <h1>
         {movie.name} ({movie.year})
       </h1>

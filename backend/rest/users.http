@@ -16,9 +16,20 @@ Content-Type: application/json
     "id": 0,
     "username": "anonim",
     "password": "1",
-    "email": "anonim@gmail.com"
+    "email": "anonim@gmail.com",
+}
+
+### PUT
+PUT {{api}}/users/3
+Content-Type: application/json
+
+{
+    "role": "anonim"
 }
 
 ### GET
 GET {{api}}/users
+
+### GET user by id
+GET {{api}}/users/3
 

@@ -13,6 +13,7 @@ function App() {
   const [userId, setUserId] = useState(3);
 
   const [movieId, setMovieId] = useState(1);
+  const [count, setCount] = useState(0);
 
   console.log(">>>App.tsx: ", isLoaded);
   return (

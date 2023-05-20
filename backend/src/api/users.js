@@ -42,4 +42,35 @@ router.get("/users", async (req, res, next) => {
   }
 });
 
+router.get("/users/:userId", async (req, res, next) => {
+  try {
+    const id = req.params.userId;
+    const users = await knex("users").where({ id });
+    if (users.length != 1) {
+      res.status(400);
+      res.send("Can't find user");
+      return;
+    }
+    res.send(users[0]);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.put("/users/:userId", async (req, res, next) => {
+  try {
+    const id = req.params.userId;
+    const users = await knex("users").where({ id });
+    if (users.length != 1) {
+      res.status(400);
+      res.send("Can't find user");
+      return;
+    }
+    await knex("users").update(req.body).where({ id });
+    res.json({ message: `User ${id} updated` });
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;

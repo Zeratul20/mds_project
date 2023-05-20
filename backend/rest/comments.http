@@ -1,7 +1,7 @@
 @api = http://localhost:8080/api
 
 ### GET
-GET {{api}}/movies/1/comments
+GET {{api}}/movies/6/comments
 Content-Type: application/json
 
 ### POST

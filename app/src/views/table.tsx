@@ -17,6 +17,9 @@ import { TableHead } from "@mui/material";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useNavigate, useParams } from 'react-router-dom';
+import { MovieAddModal } from "../components/addModals/movie";
+import { MovieEditModal } from "../components/editModals/movie";
+import { MovieDeleteModal } from "../components/deleteModals/movie";
 
 
 
@@ -102,9 +105,11 @@ const TablePaginationActions = (props: TablePaginationActionsProps) => {
 
 export const MoviesTable = ({setMovieId, userId}:any) => {
   const [movies, setMovies] = useState([]);
+  const [count, setCount] = useState(0);
   const navigate = useNavigate();
   // const {userId} = useParams();
   useEffect(() => {
+    console.log("Count: ", count)
     axios
       .get("http://localhost:8080/api/movies")
       .then((res) => {
@@ -113,7 +118,7 @@ export const MoviesTable = ({setMovieId, userId}:any) => {
         // movies = res.data;
       })
       .catch((err) => console.log(err));
-  }, [movies.length]);
+  }, [count]);
 
   console.log(">>> movies: ", movies);
 
@@ -142,67 +147,76 @@ export const MoviesTable = ({setMovieId, userId}:any) => {
   };
 
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Movie</TableCell>
-            <TableCell align="right">Year&nbsp;</TableCell>
-            <TableCell align="right">Views&nbsp;</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {(rowsPerPage > 0
-            ? sortedMovies.slice(
-                page * rowsPerPage,
-                page * rowsPerPage + rowsPerPage
-              )
-            : sortedMovies
-          ).map((movie: any) => (
-            <TableRow key={movie.title}>
-              <TableCell component="th" scope="row">
-              <button onClick={() => {
-                  navigate(`/movies/${movie.id}/${userId}`);
-                  setMovieId(movie.id);
-                }}>
-                {movie.name}
-              </button>
-              </TableCell>
-              <TableCell style={{ width: 160 }} align="right">
-                {movie.year}
-              </TableCell>
-              <TableCell style={{ width: 160 }} align="right">
-                {movie.views}
-              </TableCell>
+    <div>
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
+          <TableHead>
+            <TableRow>
+              <TableCell>Movie</TableCell>
+              <TableCell align="right">Year&nbsp;</TableCell>
+              <TableCell align="right">Views&nbsp;</TableCell>
             </TableRow>
-          ))}
-          {emptyRows > 0 && (
-            <TableRow style={{ height: 53 * emptyRows }}>
-              <TableCell colSpan={6} />
+          </TableHead>
+          <TableBody>
+            {(rowsPerPage > 0
+              ? sortedMovies.slice(
+                  page * rowsPerPage,
+                  page * rowsPerPage + rowsPerPage
+                )
+              : sortedMovies
+            ).map((movie: any) => (
+              <TableRow key={movie.title}>
+                <TableCell component="th" scope="row">
+                <button onClick={() => {
+                    navigate(`/movies/${movie.id}/${userId}`);
+                    setMovieId(movie.id);
+                  }}>
+                  {movie.name}
+                </button>
+                </TableCell>
+                <TableCell style={{ width: 160 }} align="right">
+                  {movie.year}
+                </TableCell>
+                <TableCell style={{ width: 160 }} align="right">
+                  {movie.views}
+                </TableCell>
+                <TableCell style={{ width: 160 }} align="right">
+                  <MovieEditModal movie={movie} movies={movies} setMovies={setMovies} count = {count} setCount = {setCount}/>
+                </TableCell>
+                <TableCell style={{ width: 160 }} align="right">
+                  <MovieDeleteModal movie={movie} count = {count} setCount = {setCount}/>
+                </TableCell>
+              </TableRow>
+            ))}
+            {emptyRows > 0 && (
+              <TableRow style={{ height: 53 * emptyRows }}>
+                <TableCell colSpan={6} />
+              </TableRow>
+            )}
+          </TableBody>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
+                colSpan={3}
+                count={sortedMovies.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                SelectProps={{
+                  inputProps: {
+                    "aria-label": "movies per page",
+                  },
+                  native: true,
+                }}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+                ActionsComponent={TablePaginationActions}
+              />
             </TableRow>
-          )}
-        </TableBody>
-        <TableFooter>
-          <TableRow>
-            <TablePagination
-              rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
-              colSpan={3}
-              count={sortedMovies.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              SelectProps={{
-                inputProps: {
-                  "aria-label": "movies per page",
-                },
-                native: true,
-              }}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-              ActionsComponent={TablePaginationActions}
-            />
-          </TableRow>
-        </TableFooter>
-      </Table>
-    </TableContainer>
+          </TableFooter>
+        </Table>
+      </TableContainer>
+      <MovieAddModal movies = {movies} setMovies = {setMovies} count = {count} setCount = {setCount}/>
+    </div>
   );
 };
