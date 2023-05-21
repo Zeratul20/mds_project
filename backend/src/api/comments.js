@@ -5,7 +5,7 @@ router.get("/movies/:movieId/comments", async (req, res, next) => {
   try {
     const { movieId } = req.params;
     // const comments = await knex("comments").select().where({ movieId });
-    const comments = await knex("comments").select("message", "users.username").where({ movieId }).join("users", "users.id", "=", "comments.userId");
+    const comments = await knex("comments").select("comments.id", "message", "userId", "users.username").where({ movieId }).join("users", "users.id", "=", "comments.userId");
     console.log("comments", comments)
     res.send(comments);
   } catch (error) {

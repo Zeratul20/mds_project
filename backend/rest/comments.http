@@ -15,7 +15,7 @@ Content-Type: application/json
 }
 
 ### PUT
-PUT {{api}}/movies/2
+PUT {{api}}/movies/1/comments/1
 Content-Type: application/json
 
 {
@@ -23,6 +23,6 @@ Content-Type: application/json
 }
 
 ### DELETE
-DELETE {{api}}/movies/1
+DELETE {{api}}/movies/1/comments/1
 Content-Type: application/json
 
