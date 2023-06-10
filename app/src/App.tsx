@@ -7,6 +7,7 @@ import { MoviesTable } from "./views/table";
 import { Logout } from "./components/logout";
 import { Movie } from "./views/movie";
 import { Users } from "./views/users";
+import "./App.css";
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);

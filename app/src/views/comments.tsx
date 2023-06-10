@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import "../App.css";
 
 export const Comments = ({ movieId, userId }: any) => {
   const [message, setMessage] = useState("");
@@ -33,12 +34,16 @@ export const Comments = ({ movieId, userId }: any) => {
       .catch((err) => console.log(err));
   }, [post]);
   return (
-    <div>
-      <h1>Comments</h1>
+    <div className="Comments">
+      <h2>Comments</h2>
       {comments.map((comment: any) => (
-        <div>
+        <div className = "Comment">
+          <h3>
+            {comment.userId}: {/*Fa plz nume daca poti*/}
+          </h3>
+          <br/>
           <p>
-            {comment.message} | {comment.userId}
+            {comment.message}
           </p>
         </div>
       ))}

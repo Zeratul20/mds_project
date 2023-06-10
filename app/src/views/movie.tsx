@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Comments } from "./comments";
+import "../App.css";
 
 export const Movie = () => {
   const [movie, setMovie] = useState({
@@ -27,13 +28,15 @@ export const Movie = () => {
       .catch((err) => console.log(err));
   }, [movieId]);
   return (
-    <div>
+    <div className = "Movie">
       <h1>
         {movie.name} ({movie.year})
       </h1>
       <h2>De: {movie.director}</h2>
+      <br/>
       <h4>Vizualizari: {movie.views}</h4>
-      {movie.description}
+      <br/>
+      <div className = "MovieText">{movie.description}</div>
       <Comments movieId={movieId} userId={userId}/>
     </div>
   );
