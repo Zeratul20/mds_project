@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState, useCallback } from "react";
 import "./comments.css";
+// import "../App.css";
 import { CommentEditModal } from "../components/editModals/comment";
 
 export const Comments = ({ movieId, userId }: any) => {

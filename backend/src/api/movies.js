@@ -63,6 +63,7 @@ router.post("/movies", async (req, res, next) => {
       res.send("Movie already exists");
       return;
     }
+    req.body.views = 0;
     await knex("movies")
       .insert(req.body)
       .then((response) => res.json(response.data));

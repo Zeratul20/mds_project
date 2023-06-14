@@ -20,8 +20,8 @@ const style = {
 };
 
 const isButtonDisabled = (data: any) => {
-    const {name, views, director, year, description} = data;
-    if (name && views && director && year && description) {
+    const {name, director, year, description} = data;
+    if (name && director && year && description) {
         return false;
     }
     return true;
@@ -30,7 +30,7 @@ const isButtonDisabled = (data: any) => {
 export const MovieAddModal = (props:any) => {
   const {movies, setMovies, count, setCount} = props;
   const [open, setOpen] = useState(false);
-  const [data, setData] = useState({name: "", views: 0, director: "", year: 0, description: ""});
+  const [data, setData] = useState({name: "", director: "", year: 0, description: ""});
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const handleChange = (label:string, event: any) => {
@@ -52,7 +52,7 @@ export const MovieAddModal = (props:any) => {
       .catch(error => {
           console.log(error);
       });
-      setData({name: "", views: 0, director: "", year: 0, description: ""});
+      setData({name: "", director: "", year: 0, description: ""});
   }
 
   return (
@@ -73,10 +73,6 @@ export const MovieAddModal = (props:any) => {
                 <div className="name">
                     <label className='nameLabel' htmlFor="name">Name</label>
                     <input className="nameInput" placeholder='Movie Name' onChange={event => handleChange("name", event)}/>
-                </div>
-                <div className="views">
-                    <label className='viewsLabel' htmlFor="views">Views</label>
-                    <input className="viewsInput" placeholder='Views' onChange={event => handleChange("views", event)}/>
                 </div>
                 <div className="director">
                     <label className='directorLabel' htmlFor="director">Director</label>

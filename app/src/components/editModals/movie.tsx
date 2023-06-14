@@ -30,19 +30,16 @@ const isButtonDisabled = (data: any, movie:any) => {
 export const MovieEditModal = (props: any) => {
   const { movies, setMovies, movie, count, setCount } = props;
   const {
-    views: movieViews,
     description: movieDescription,
     id: movieId,
   } = movie;
   const [open, setOpen] = useState(false);
-  const [data, setData] = useState({ views: movieViews, description: movieDescription });
+  const [data, setData] = useState({ description: movieDescription });
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const handleChange = (label: string, event: any) => {
     event.preventDefault();
-    if (label === "views")
-      setData({ ...data, [label]: parseInt(event.target.value) });
-    else setData({ ...data, [label]: event.target.value });
+    setData({ ...data, [label]: event.target.value });
   };
 
   const handleClick = (event: any) => {
@@ -57,7 +54,7 @@ export const MovieEditModal = (props: any) => {
       .catch((error) => {
         console.log(error);
       });
-    setData({ views: 0, description: "" });
+    setData({ description: "" });
   };
 
   return (
@@ -75,16 +72,6 @@ export const MovieEditModal = (props: any) => {
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             <div className="form-group">
-              <div className="views">
-                <label className="viewsLabel" htmlFor="views">
-                  Views
-                </label>
-                <input
-                  className="viewsInput"
-                  defaultValue={movieViews}
-                  onChange={(event) => handleChange("views", event)}
-                />
-              </div>
               <div className="description">
                 <label className="descriptionLabel" htmlFor="description">
                   Description

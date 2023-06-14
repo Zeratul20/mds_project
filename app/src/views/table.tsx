@@ -20,6 +20,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { MovieAddModal } from "../components/addModals/movie";
 import { MovieEditModal } from "../components/editModals/movie";
 import { MovieDeleteModal } from "../components/deleteModals/movie";
+import {LikeButton} from "../components/movieButtons/like";
 
 
 
@@ -123,7 +124,7 @@ export const MoviesTable = ({setMovieId, userId}:any) => {
   console.log(">>> movies: ", movies);
 
   const sortedMovies = movies.sort((a: any, b: any) =>
-    a.views < b.views ? 1 : -1
+    a.year < b.year ? 1 : -1
   );
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -154,7 +155,7 @@ export const MoviesTable = ({setMovieId, userId}:any) => {
             <TableRow>
               <TableCell>Movie</TableCell>
               <TableCell align="right">Year&nbsp;</TableCell>
-              <TableCell align="right">Views&nbsp;</TableCell>
+              <TableCell align="right">Likes&nbsp;</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -178,6 +179,7 @@ export const MoviesTable = ({setMovieId, userId}:any) => {
                   {movie.year}
                 </TableCell>
                 <TableCell style={{ width: 160 }} align="right">
+                  <LikeButton userId={userId} movie={movie} count = {count} setCount = {setCount}/>
                   {movie.views}
                 </TableCell>
                 <TableCell style={{ width: 160 }} align="right">

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Comments } from "./comments";
 
+
 export const Movie = () => {
   const [movie, setMovie] = useState({
     description: "",
@@ -30,12 +31,12 @@ export const Movie = () => {
   }, [movieId]);
   return (
     <div>
-      <button onClick={() => navigate("/movies")}>Return to the Movies page</button>
+      <button style={{border: "none", color: "white", padding: "15px 32px", display: "inline-block", backgroundColor: "#008CBA", fontSize: "font-size: 16px;", fontFamily: "inherit", marginTop: "10px", cursor: "pointer"}} onClick={() => navigate("/movies")}>Return to the Movies page</button>
       <h1>
         {movie.name} ({movie.year})
       </h1>
       <h2>De: {movie.director}</h2>
-      <h4>Vizualizari: {movie.views}</h4>
+      <h4>Likes: {movie.views}</h4>
       {movie.description}
       <Comments movieId={movieId} userId={userId}/>
     </div>
