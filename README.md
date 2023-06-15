@@ -18,7 +18,7 @@ User Stories:
 - As an user, I would like to be notified when my account has been approved (should have)
 - As an user, I would like for the site to have a table of the movies where I can click on one and see a more detailed page of the movie and the comments below + a place where I can post a comment, too (must have)
 
-Backlog: https://hackteam.atlassian.net/jira/software/projects/MDS/issues
+Backlog: [https://hackteam.atlassian.net/jira/software/projects/MDS/issues](https://trello.com/b/zz0RHFi8/mds)
 
 ![image](https://github.com/Zeratul20/mds_project/assets/53442538/e7cb1e72-0e0d-4d0a-a51f-bdaf036157b8)
 
